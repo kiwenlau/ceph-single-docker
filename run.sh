@@ -1,8 +1,5 @@
 #!/bin/bash
 
-LOCAL_IP=192.168.59.4
-LOCAL_NETWORK=192.168.59.0/24
-
 sudo docker rm -f ceph-monitor ceph-osd ceph-gateway > /dev/null
 sudo rm -rf /etc/ceph
 sudo rm -rf /var/lib/ceph
@@ -11,8 +8,8 @@ echo -e "\nstart ceph-monitor container..."
 
 sudo docker run -itd \
                 --net=host \
-                -e MON_IP=$LOCAL_IP \
-                -e CEPH_NETWORK=$LOCAL_NETWORK \
+                -e MON_IP=127.0.0.1 \
+                -e CEPH_NETWORK=127.0.0.0/24 \
                 -v /etc/ceph:/etc/ceph \
                 -v /var/lib/ceph/:/var/lib/ceph/ \
                 --name=ceph-monitor \

@@ -9,6 +9,8 @@ sudo docker pull kiwenlau/ceph:infernalis
 ####run containers
 
 ```
+git clone https://github.com/kiwenlau/ceph-single-docker
+cd ceph-single-docker/
 sudo ./run.sh
 ```
 
