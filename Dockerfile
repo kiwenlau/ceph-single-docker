@@ -17,23 +17,23 @@ RUN wget -q -O- 'https://download.ceph.com/keys/release.asc' | apt-key add - && 
     apt-get update && apt-get install -y --force-yes ceph radosgw && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
 
-# install etcdctl
-RUN wget -q -O- "https://github.com/coreos/etcd/releases/download/${ETCDCTL_VERSION}/etcd-${ETCDCTL_VERSION}-${ETCDCTL_ARCH}.tar.gz" |tar xfz - -C/tmp/ etcd-${ETCDCTL_VERSION}-${ETCDCTL_ARCH}/etcdctl && \
-    mv /tmp/etcd-${ETCDCTL_VERSION}-${ETCDCTL_ARCH}/etcdctl /usr/local/bin/etcdctl
+# # install etcdctl
+# RUN wget -q -O- "https://github.com/coreos/etcd/releases/download/${ETCDCTL_VERSION}/etcd-${ETCDCTL_VERSION}-${ETCDCTL_ARCH}.tar.gz" |tar xfz - -C/tmp/ etcd-${ETCDCTL_VERSION}-${ETCDCTL_ARCH}/etcdctl && \
+#     mv /tmp/etcd-${ETCDCTL_VERSION}-${ETCDCTL_ARCH}/etcdctl /usr/local/bin/etcdctl
 
-# install kviator
-RUN wget https://github.com/AcalephStorage/kviator/releases/download/v${KVIATOR_VERSION}/kviator-${KVIATOR_VERSION}-linux-amd64.zip && \
-    cd /usr/local/bin && \
-    unzip /kviator-${KVIATOR_VERSION}-linux-amd64.zip && \
-    chmod +x /usr/local/bin/kviator && \
-    rm /kviator-${KVIATOR_VERSION}-linux-amd64.zip
+# # install kviator
+# RUN wget https://github.com/AcalephStorage/kviator/releases/download/v${KVIATOR_VERSION}/kviator-${KVIATOR_VERSION}-linux-amd64.zip && \
+#     cd /usr/local/bin && \
+#     unzip /kviator-${KVIATOR_VERSION}-linux-amd64.zip && \
+#     chmod +x /usr/local/bin/kviator && \
+#     rm /kviator-${KVIATOR_VERSION}-linux-amd64.zip
 
-# install confd
-RUN wget https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64 && \
-    mv /confd-${CONFD_VERSION}-linux-amd64 /usr/local/bin/confd && \
-    chmod +x /usr/local/bin/confd && \
-    mkdir -p /etc/confd/conf.d && \
-    mkdir -p /etc/confd/templates
+# # install confd
+# RUN wget https://github.com/kelseyhightower/confd/releases/download/v${CONFD_VERSION}/confd-${CONFD_VERSION}-linux-amd64 && \
+#     mv /confd-${CONFD_VERSION}-linux-amd64 /usr/local/bin/confd && \
+#     chmod +x /usr/local/bin/confd && \
+#     mkdir -p /etc/confd/conf.d && \
+#     mkdir -p /etc/confd/templates
 
 COPY init/* /usr/local/bin/
 
